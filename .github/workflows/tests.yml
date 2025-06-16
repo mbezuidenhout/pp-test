@@ -22,7 +22,7 @@ jobs:
 
       - name: Copy .env and generage app key
         run: |
-          cp .env.example .env
+          cp .env.ci .env
           php artisan key:generate
 
       - name: Run migrations

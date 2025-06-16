@@ -16,17 +16,17 @@ jobs:
           php-version: 8.2
           extensions: xdebug
           coverage: xdebug
+
+      - name: Run composer install
+        run: composer install -n --prefer-dist
       
       - name: Copy .env and generage app key
         run: |
           cp .env.example .env
           php artisan key:generate
 
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
-
       - name: Run migrations
         run: php arisan migrate --force
 
       - name: Run tests with coverage
-        run: vendor/bin/phpunit --coverage-text --colors=never
+        run: php artisan test --coverage

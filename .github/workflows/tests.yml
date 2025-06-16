@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -19,7 +19,7 @@ jobs:
 
       - name: Run composer install
         run: composer install -n --prefer-dist
-      
+
       - name: Copy .env and generage app key
         run: |
           cp .env.example .env

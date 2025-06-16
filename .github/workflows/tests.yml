@@ -20,7 +20,7 @@ jobs:
       - name: Copy .env and generage app key
         run: |
           cp .env.example .env
-        php artisan key:generate
+          php artisan key:generate
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest

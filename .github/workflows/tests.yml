@@ -1,0 +1,32 @@
+name: Run Laravel Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          extensions: xdebug
+          coverage: xdebug
+      
+      - name: Copy .env and generage app key
+        run: |
+          cp .env.example .env
+        php artisan key:generate
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Run migrations
+        run: php arisan migrate --force
+
+      - name: Run tests with coverage
+        run: vendor/bin/phpunit --coverage-text --colors=never

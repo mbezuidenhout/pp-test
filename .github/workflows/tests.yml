@@ -28,6 +28,10 @@ jobs:
           extensions: xdebug, pdo, sqlite, pdo_sqlite
           coverage: xdebug
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Run composer install
         run: composer install -n --prefer-dist
 
@@ -45,6 +49,12 @@ jobs:
           DB_DATABASE: laravel
           DB_USERNAME: root
           DB_PASSWORD: root
+
+      - name: Install NPM dependencies
+        run: npm ci
+
+      - name: Build frontend assets
+        run: npm run build
 
       - name: Run tests with coverage
         run: php artisan test --coverage

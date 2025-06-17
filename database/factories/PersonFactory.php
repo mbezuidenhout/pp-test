@@ -31,7 +31,7 @@ class PersonFactory extends Factory
             'language_code' => $this->faker->languageCode(),
             'interests' => $this->faker->randomElements([
                 'Art', 'Photography', 'Technology', 'Music', 'Cooking', 'Travel', 'Reading', 'Gaming',
-                'Sports', 'Fitness', 'Gardening', 'Writing', 'Fashion', 'DIY', 'Film'
+                'Sports', 'Fitness', 'Gardening', 'Writing', 'Fashion', 'DIY', 'Film',
             ], rand(1, 5)),
         ];
     }

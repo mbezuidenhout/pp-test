@@ -10,17 +10,15 @@ class OptionSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
-    }
+    public function run(): void {}
 
     public static function runStatic(): void
     {
         $l10n = [
-            'date_format' =>  'Y-m-d',
-            'date_alt_format' =>  'F j, Y',
-            'time_format' =>  'H:i:s',
-            'date_time_format' =>  'Y-m-d H:i:s',
+            'date_format' => 'Y-m-d',
+            'date_alt_format' => 'F j, Y',
+            'time_format' => 'H:i:s',
+            'date_time_format' => 'Y-m-d H:i:s',
         ];
         DB::table('options')->insert([
             'name' => 'l10n',
@@ -30,32 +28,32 @@ class OptionSeeder extends Seeder
             'updated_at' => now(),
         ]);
         DB::table('options')->insert([
-           'name' => 'app',
-           'value' => json_encode(['version' => '1.0.0']),
-           'autoload' => true,
-           'created_at' => now(),
-           'updated_at' => now(),
+            'name' => 'app',
+            'value' => json_encode(['version' => '1.0.0']),
+            'autoload' => true,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
         $languages = [
             // English variants
-            'en'     => 'English',
-            'en-ZA'  => 'English (South Africa)',
-            'en-GB'  => 'English (United Kingdom)',
-            'en-US'  => 'English (United States)',
-            'en-AU'  => 'English (Australia)',
-            'en-CA'  => 'English (Canada)',
+            'en' => 'English',
+            'en-ZA' => 'English (South Africa)',
+            'en-GB' => 'English (United Kingdom)',
+            'en-US' => 'English (United States)',
+            'en-AU' => 'English (Australia)',
+            'en-CA' => 'English (Canada)',
 
             // South African languages (official)
-            'af'     => 'Afrikaans',
-            'zu'     => 'Zulu',
-            'xh'     => 'Xhosa',
-            'st'     => 'Southern Sotho',
-            'tn'     => 'Tswana',
-            'ts'     => 'Tsonga',
-            'ss'     => 'Swati',
-            've'     => 'Venda',
-            'nr'     => 'Southern Ndebele',
-            'nso'    => 'Northern Sotho',
+            'af' => 'Afrikaans',
+            'zu' => 'Zulu',
+            'xh' => 'Xhosa',
+            'st' => 'Southern Sotho',
+            'tn' => 'Tswana',
+            'ts' => 'Tsonga',
+            'ss' => 'Swati',
+            've' => 'Venda',
+            'nr' => 'Southern Ndebele',
+            'nso' => 'Northern Sotho',
 
             // Complete set of ISO 639-1 language codes and English names
             'ab' => 'Abkhaz',
@@ -249,7 +247,7 @@ class OptionSeeder extends Seeder
             'Technology',
             'Fitness',
             'Art',
-            'Reading'
+            'Reading',
         ];
         DB::table('options')->insert([
             'name' => 'interests',

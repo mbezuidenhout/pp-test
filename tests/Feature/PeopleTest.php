@@ -10,14 +10,13 @@ use Tests\TestCase;
 
 class PeopleTest extends TestCase
 {
-
     protected User $user;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        //$this->artisan('migrate:fresh');
+        // $this->artisan('migrate:fresh');
         $this->user = User::factory()->create();
         $this->withSession([])->actingAs($this->user);
     }
@@ -73,6 +72,7 @@ class PeopleTest extends TestCase
         });
 
     }
+
     public function test_user_can_view_the_edit_person_form()
     {
         $person = Person::factory()->create();

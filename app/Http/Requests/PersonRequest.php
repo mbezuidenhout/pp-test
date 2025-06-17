@@ -33,7 +33,7 @@ class PersonRequest extends FormRequest
                 'string',
                 'size:13',
                 Rule::unique('people')->ignore($personId)->where(fn ($q) => $q->whereNull('deleted_at')),
-                new SouthAfricanID()
+                new SouthAfricanID,
             ],
             'mobile_number' => ['required', 'regex:/^\+\d{1,3}\d{4,14}$/'],
             'email' => ['required', 'string', 'email', 'max:320'], // Maximum length, according to RFC 3696

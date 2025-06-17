@@ -2,12 +2,11 @@
 
 namespace Tests\Unit\Utils;
 
-use PHPUnit\Framework\TestCase;
 use App\Utils\SouthAfricanIDUtils;
+use PHPUnit\Framework\TestCase;
 
 class SouthAfricanIDUtilsTest extends TestCase
 {
-
     public function test_luhn_digit_is_calculated_correctly(): void
     {
         // Example: ID without check digit = '800101500908'
@@ -21,13 +20,15 @@ class SouthAfricanIDUtilsTest extends TestCase
         SouthAfricanIDUtils::calculateLuhnDigit('abcdefgh1234');
     }
 
-    public function test_throws_exception_for_input_too_long() {
-        $this->expectException( \InvalidArgumentException::class );
-        SouthAfricanIDUtils::calculateLuhnDigit( '1234567890123' ); // 13 digits
+    public function test_throws_exception_for_input_too_long()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        SouthAfricanIDUtils::calculateLuhnDigit('1234567890123'); // 13 digits
     }
 
-    public function test_throws_exception_for_input_too_short() {
-        $this->expectException( \InvalidArgumentException::class );
-        SouthAfricanIDUtils::calculateLuhnDigit( '12345678901' ); // 11 digits
+    public function test_throws_exception_for_input_too_short()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        SouthAfricanIDUtils::calculateLuhnDigit('12345678901'); // 11 digits
     }
 }

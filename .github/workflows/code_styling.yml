@@ -1,0 +1,25 @@
+name: Run Laravel Tests
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+
+      - name: Run composer install
+        run: composer install -n --prefer-dist
+
+      - name: Run pint code styling test
+        run: ./vendor/bin/pint --test
+
+

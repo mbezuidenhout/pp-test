@@ -29,7 +29,7 @@ class PasswordResetTest extends TestCase
 
         $this->post('/forgot-password', [
             '_token' => \csrf_token(),
-            'email' => $user->email
+            'email' => $user->email,
         ]);
 
         Notification::assertSentTo($user, ResetPassword::class);
@@ -45,7 +45,7 @@ class PasswordResetTest extends TestCase
 
         $this->post('/forgot-password', [
             '_token' => \csrf_token(),
-            'email' => $user->email
+            'email' => $user->email,
         ]);
 
         Notification::assertSentTo($user, ResetPassword::class, function ($notification) {
@@ -67,7 +67,7 @@ class PasswordResetTest extends TestCase
 
         $this->post('/forgot-password', [
             '_token' => \csrf_token(),
-            'email' => $user->email
+            'email' => $user->email,
         ]);
 
         Notification::assertSentTo($user, ResetPassword::class, function ($notification) use ($user) {

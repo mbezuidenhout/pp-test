@@ -8,12 +8,11 @@ use Tests\TestCase;
 
 class SouthAfricanIDTest extends TestCase
 {
-
     public function test_valid_south_african_id(): void
     {
         $validator = Validator::make(
             ['id' => '8001015009087'],
-            ['id' => [new SouthAfricanID()]]
+            ['id' => [new SouthAfricanID]]
         );
 
         $this->assertTrue($validator->passes());
@@ -23,7 +22,7 @@ class SouthAfricanIDTest extends TestCase
     {
         $validator = Validator::make(
             ['id' => '1234567890123'],
-            ['id' => [new SouthAfricanID()]]
+            ['id' => [new SouthAfricanID]]
         );
 
         $this->assertFalse($validator->passes());
@@ -33,7 +32,7 @@ class SouthAfricanIDTest extends TestCase
     {
         $validator = Validator::make(
             ['id' => '123456789'],
-            ['id' => [new SouthAfricanID()]]
+            ['id' => [new SouthAfricanID]]
         );
 
         $this->assertFalse($validator->passes());

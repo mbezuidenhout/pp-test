@@ -10,6 +10,7 @@ class Person extends Model
 {
     /** @use HasFactory<\Database\Factories\PersonFactory> */
     use HasFactory;
+
     use SoftDeletes;
 
     protected $fillable = [
@@ -22,7 +23,7 @@ class Person extends Model
         'language_code',
         'interests',
         'created_user_id',
-        'updated_user_id'
+        'updated_user_id',
     ];
 
     protected $casts = [

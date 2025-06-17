@@ -15,6 +15,7 @@ class PersonCreatedMail extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public Person $person;
+
     private array $autoloadOptions;
 
     /**
@@ -45,7 +46,7 @@ class PersonCreatedMail extends Mailable implements ShouldQueue
             view: 'emails.person-created',
             with: [
                 'person' => $this->person,
-                'autoloadOptions' => $this->autoloadOptions
+                'autoloadOptions' => $this->autoloadOptions,
             ],
         );
     }

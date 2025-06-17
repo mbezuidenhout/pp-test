@@ -25,6 +25,7 @@ class PersonController extends Controller
 
         $people = Person::all()->map(function ($person) use ($dateFormat) {
             $person->birth_date_formatted = optional($person->birth_date)->format($dateFormat);
+
             return $person;
         });
 
@@ -37,8 +38,9 @@ class PersonController extends Controller
     public function create()
     {
         $interests = \App\Models\Option::where('name', 'interests')->first()->value;
+
         return view('person.form', [
-            'person' => new \App\Models\Person(),
+            'person' => new \App\Models\Person,
             'mode' => 'create',
             'interests' => $interests,
             'autoloadOptions' => $this->autoloadOptions,
@@ -48,7 +50,7 @@ class PersonController extends Controller
     /**
      * Store a newly created person in storage.
      */
-    public function store(\App\Http\Requests\PersonRequest  $request)
+    public function store(\App\Http\Requests\PersonRequest $request)
     {
         $validated = $request->validated();
         $validated['created_user_id'] = \auth()->id();
@@ -80,11 +82,12 @@ class PersonController extends Controller
     /**
      * Update the specified person in storage.
      */
-    public function update(\App\Http\Requests\PersonRequest  $request, Person $person)
+    public function update(\App\Http\Requests\PersonRequest $request, Person $person)
     {
         $validated = $request->validated();
         $validated['updated_user_id'] = \auth()->id();
         $person->update($validated);
+
         return Redirect::route('dashboard')->with('status', 'person-updated');
     }
 

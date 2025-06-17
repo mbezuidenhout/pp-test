@@ -12,8 +12,9 @@ class InterestController extends Controller
     public function index()
     {
         $interests = \App\Models\Option::where('name', 'interests')->first()->value;
+
         return view('interests', [
-            'interests' => $interests
+            'interests' => $interests,
         ]);
     }
 

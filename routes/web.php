@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\InterestController;
 use App\Http\Controllers\ProfileController;
-use \App\Http\Controllers\InterestController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,5 +17,5 @@ Route::middleware('auth')->group(function () {
 Route::get('/interests', [InterestController::class, 'index'])->middleware(['auth'])->name('interests');
 Route::post('/interests/sync', [InterestController::class, 'syncInterests'])->name('interests.sync');
 
-require __DIR__ . '/people.php';
+require __DIR__.'/people.php';
 require __DIR__.'/auth.php';

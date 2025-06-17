@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Person;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
@@ -49,16 +50,23 @@ class PeopleTest extends TestCase
 
         $response->assertRedirect('/dashboard');
 
-        $this->assertDatabaseHas('people', [
-            'name' => $person->name,
-            'surname' => $person->surname,
-            'sa_id_number' => $person->sa_id_number,
-            'mobile_number' => $person->mobile_number,
-            'email' => $person->email,
-            'birth_date' => $person->birth_date->format('Y-m-d'),
-            'language_code' => $person->language_code,
-            'interests' => \json_encode($person->interests),
-        ]);
+        $dbPerson = DB::table('people')
+            ->where('sa_id_number', $person->sa_id_number)
+            ->whereNull('deleted_at')
+            ->first();
+
+        $this->assertNotNull($dbPerson);
+
+        $this->assertSame($person->name, $dbPerson->name);
+        $this->assertSame($person->surname, $dbPerson->surname);
+        $this->assertSame($person->sa_id_number, $dbPerson->sa_id_number);
+        $this->assertSame($person->mobile_number, $dbPerson->mobile_number);
+        $this->assertSame($person->email, $dbPerson->email);
+        $this->assertSame($person->birth_date->format('Y-m-d'), \Carbon\Carbon::parse($dbPerson->birth_date)->format('Y-m-d'));
+        $this->assertSame($person->language_code, $dbPerson->language_code);
+        $this->assertEqualsCanonicalizing($person->interests, json_decode($dbPerson->interests, true));
+
+        // Doing a assertDatabaseHas fails on GitHub because the content of interests does not match the json_decoded string
 
         Mail::assertQueued(\App\Mail\PersonCreatedMail::class, function ($mail) use ($person) {
             return $mail->hasTo($person->email);
@@ -112,7 +120,7 @@ class PeopleTest extends TestCase
         ]);
     }
 
-    public function test_user_can_delete_a_person()
+    public function test_user_can_soft_delete_a_person()
     {
         $person = Person::factory()->create();
 

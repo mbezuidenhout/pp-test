@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class InterestsTest extends TestCase
@@ -41,9 +42,10 @@ class InterestsTest extends TestCase
 
         $response->assertStatus(200)->assertJson(['status' => 'ok']);
 
-        $this->assertDatabaseHas('options', [
-            'name' => 'interests',
-            'value' => json_encode($payload['interests'])
-        ]);
+        $option = DB::table('options')->where('name', 'interests')->first();
+
+        $this->assertNotNull($option);
+
+        $this->assertEqualsCanonicalizing(json_decode($option->value), $payload['interests']);
     }
 }

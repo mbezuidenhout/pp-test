@@ -1,4 +1,4 @@
-name: Run Laravel Tests
+name: Run Code Styling Test
 
 on:
   push:

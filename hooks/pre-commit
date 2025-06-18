@@ -1,0 +1,17 @@
+#!/bin/sh
+echo "Running pre-commit hook..."
+
+# Format check
+./vendor/bin/pint --test || {
+  echo "Pint formatting failed. Please fix the formatting before committing." >&2
+  exit 1
+}
+
+# Run tests
+php artisan test || {
+  echo "Unit tests failed. Fix before committing." >&2
+  exit 1
+}
+
+echo "Pre-commit checks passed."
+exit 0

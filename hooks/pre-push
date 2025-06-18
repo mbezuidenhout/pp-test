@@ -1,0 +1,10 @@
+#!/bin/sh
+echo "Running pre-push hook..."
+
+php artisan test || {
+  echo "Tests failed. Push aborted."
+  exit 1
+}
+
+echo "Pre-push test suite passed."
+exit 0

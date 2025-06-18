@@ -28,7 +28,7 @@
                         <!-- Tags Display -->
                         <div class="mt-2 gap-2 flex flex-wrap break-words" style="flex-wrap:wrap">
                             <template x-for="(tag, index) in tags" :key="tag">
-                                <div class="bg-blue-200 dark:text-gray-200 text-blue-800 dark:text-blue-100 px-2 py-1 rounded flex items-center">
+                                <div class="bg-blue-200 dark:bg-gray-900 dark:text-gray-200 text-blue-800 px-2 py-1 rounded flex items-center">
                                     <span x-text="tag"></span>
                                     <button type="button" class="ml-1 text-red-600" @click="removeTag(index)">×</button>
                                 </div>

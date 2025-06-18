@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Added to prevent errors on console commands
-        if (app()->runningInConsole() && ! app()->runningUnitTests() && ! app()->runningConsoleCommand('test')) {
+        if (app()->runningInConsole() || app()->runningUnitTests()) {
             return;
         }
         $autoloadOptions = \App\Models\Option::where('autoload', true)->pluck('value', 'name')->toArray();

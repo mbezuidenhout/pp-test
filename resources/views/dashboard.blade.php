@@ -128,9 +128,9 @@
                                 </tbody>
                             </table>
                             <div class="flex items-center justify-between mt-4">
-                                <button @click="if (currentPage > 1) currentPage--" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400" :disabled="currentPage === 1">Previous</button>
+                                <button @click="if (currentPage > 1) currentPage--" class="px-4 py-2 bg-gray-300 dark:bg-gray-900 rounded hover:bg-gray-400" :disabled="currentPage === 1">Previous</button>
                                 <span class="text-sm text-gray-700 dark:text-gray-300">Page <span x-text="currentPage"></span> of <span x-text="Math.ceil(filteredPeople().length / itemsPerPage)"></span></span>
-                                <button @click="if (currentPage < Math.ceil(filteredPeople().length / itemsPerPage)) currentPage++" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400" :disabled="currentPage >= Math.ceil(filteredPeople().length / itemsPerPage)">Next</button>
+                                <button @click="if (currentPage < Math.ceil(filteredPeople().length / itemsPerPage)) currentPage++" class="px-4 py-2 bg-gray-300 dark:bg-gray-900 rounded hover:bg-gray-400" :disabled="currentPage >= Math.ceil(filteredPeople().length / itemsPerPage)">Next</button>
                             </div>
                         </div>
                     </div>

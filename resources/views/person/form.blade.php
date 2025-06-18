@@ -88,7 +88,7 @@
                     <div x-data="tagInputComponent()" class="w-full">
                         <div class="flex flex-wrap gap-2 mb-2" style="flex-wrap: wrap">
                             <template x-for="(tag, index) in tags" :key="index">
-                                <div class="bg-blue-200 dark:text-gray-200 text-blue-800 dark:text-blue-100 px-2 py-1 rounded flex items-center">
+                                <div class="bg-blue-200 dark:bg-gray-900 text-blue-800 dark:text-gray-200 px-2 py-1 rounded flex items-center">
                                     <span x-text="tag"></span>
                                     <button type="button" class="ml-1 text-red-600" @click="removeTag(index)">×</button>
                                 </div>
